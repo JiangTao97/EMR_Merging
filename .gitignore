@@ -23,3 +23,15 @@ __pycache__/       # Python 缓存目录
 *.bz2
 *.xz
 *.pt
+
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.webp
+*.svg
+
+*.ppm
+*.csv
+merge_vit/data/

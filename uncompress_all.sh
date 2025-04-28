@@ -24,6 +24,7 @@ find "$TARGET_DIR" -maxdepth 1 -type f \( \
     -name "*.tar.gz" -o -name "*.tgz" -o \
     -name "*.tar.bz2" -o -name "*.tbz2" -o \
     -name "*.tar.xz" -o -name "*.txz" -o \
+    -name "*.tar" -o \
     -name "*.rar" -o \
     -name "*.7z" \
 \) -print0 | while IFS= read -r -d $'\0' file; do
@@ -65,6 +66,13 @@ find "$TARGET_DIR" -maxdepth 1 -type f \( \
         *.tar.xz|*.txz)
             if command -v tar &> /dev/null; then
                 tar -xJf "$filename" && extract_success=0
+            else
+                echo "Warning: 'tar' command not found. Skipping '$filename'."
+            fi
+            ;;
+        *.tar) # Add case for .tar files
+            if command -v tar &> /dev/null; then
+                tar -xf "$filename" && extract_success=0
             else
                 echo "Warning: 'tar' command not found. Skipping '$filename'."
             fi
