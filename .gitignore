@@ -14,3 +14,12 @@ Thumbs.db          # Windows 缩略图
 __pycache__/       # Python 缓存目录
 *.swp              # Vim 临时文件
 *.tmp              # 临时文件
+*.zip
+*.tar.gz
+*.tar
+*.gz
+*.rar
+*.7z
+*.bz2
+*.xz
+*.pt
