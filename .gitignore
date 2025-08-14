@@ -1,7 +1,5 @@
-# 忽略所有 .log 文件
 *.log
 
-# 忽略特定目录（末尾加 / 表示目录）
 build/
 dist/
 node_modules/
