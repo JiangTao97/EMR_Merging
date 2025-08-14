@@ -2,11 +2,14 @@ import os
 
 import numpy as np
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "5"
 
 import time
 import sys
-sys.path.append('/home/taskarithmetic/')
+# sys.path.append('/home/jiangt/EMR_Merging/taskarithmetic/')
+sys.path.append('/home/jiangt/EMR_Merging/taskarithmetic/')
+# Add the parent directory containing the 'src' module to the path
+sys.path.append('/home/jiangt/EMR_Merging/merge_vit') 
 
 from task_vectors import TaskVector
 from eval import eval_single_dataset
@@ -29,17 +32,17 @@ def create_log_dir(path, filename='log.txt'):
 exam_datasets = ['SUN397', 'Cars', 'RESISC45', 'EuroSAT', 'SVHN', 'GTSRB', 'MNIST', 'DTD'] # SUN397 | Cars | RESISC45 | EuroSAT | SVHN | GTSRB | MNIST | DTD
 model = 'ViT-B-32'
 args = parse_arguments()
-args.data_location = '/home/taskarithmetic/data'
+args.data_location = '/home/jiangt/EMR_Merging/taskarithmetic/data'
 args.model = model
-args.save = '/home/taskarithmetic/checkpoints/' + model
-args.logs_path = '/home/taskarithmetic/logs/' + model
-pretrained_checkpoint = '/home/taskarithmetic/checkpoints/'+model+'/zeroshot.pt'
+args.save = '/home/jiangt/EMR_Merging/taskarithmetic/checkpoints/' + model
+args.logs_path = '/home/jiangt/EMR_Merging/taskarithmetic/logs/' + model
+pretrained_checkpoint = '/home/jiangt/EMR_Merging/taskarithmetic/checkpoints/'+model+'/zeroshot.pt'
 
 str_time_ = time.strftime('%Y%m%d_%H%M%S', time.localtime(time.time()))
 log = create_log_dir(args.logs_path, 'log_{}_task_arithmetic.txt'.format(str_time_))
 
 task_vectors = [
-    TaskVector(pretrained_checkpoint, '/home/taskarithmetic/checkpoints/'+model+'/'+dataset_name+'/finetuned.pt') for dataset_name in exam_datasets
+    TaskVector(pretrained_checkpoint, '/home/jiangt/EMR_Merging/taskarithmetic/checkpoints/'+model+'/'+dataset_name+'/finetuned.pt') for dataset_name in exam_datasets
 ]
 
 task_vector_sum = sum(task_vectors)
